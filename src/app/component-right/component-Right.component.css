@@ -1,0 +1,49 @@
+.Description {
+   height: 2vh;
+   text-wrap: nowrap;
+   color: black;
+   font-weight: 900;
+}
+
+.DescriptionSmall {
+   height: 2.2vh;
+   min-height: 2.2vh;
+   width: 10vw;
+   color: black;
+   font-weight: 900;
+   margin-bottom: 0vh;
+}
+
+.inputfield {
+   height: 2vh;
+   color: black;
+   font-weight: 900;
+   margin-bottom: 3vh
+}
+
+.empty {
+   height: 2.5vh;
+}
+
+.value {
+   min-height: 2.2vh;
+   height: 2.2vh;
+   color: black;
+   font-weight: 900;
+   text-align: right;
+}
+
+.remark {
+   empty-cells: hide;
+   border-radius: 5px;
+   padding: 5px;
+   border: 4px dashed red !important;
+}
+
+.remark2 {
+   empty-cells: hide;
+   border-radius: 5px;
+   padding: 5px;
+   border: 4px dashed rgb(103, 226, 21) !important;
+
+}

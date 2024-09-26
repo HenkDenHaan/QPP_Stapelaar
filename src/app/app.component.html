@@ -1,0 +1,71 @@
+<soho-icons-new></soho-icons-new>
+<soho-icons-empty-new> style = "height: 10px </soho-icons-empty-new>
+
+<div>
+
+   <div class="form-responsive row" style="margin-left: 0vw;width: 100vw;">
+      <div class=" twelve columns" style="margin-left: 0vw;padding-right: 0px;width: 100vw;">
+         <label for="BlancLine" style="min-height: 0.5vh;"></label>
+         <div class="six columns " style="height: 54vh;margin-left: 0vw;width: 49.5vw;">
+            <app-component-Left></app-component-Left>
+         </div>
+         <div class="six columns " style="height: 54vh;margin-left: 0vw;width: 49.5vw; ">
+            <app-component-Right></app-component-Right>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="three columns" style="width: 10vw;">
+   <table style=" border-radius: 5px; border: 2px solid; height: 16vh;width: 12vw; margin-top:
+                     23vh;font-size: 12vh;padding-left: 1vw;">{{this.itemService.MachineLeft}}
+   </table>
+</div>
+<div class="six columns" style="margin-top:35vh; margin-left: 14vw ;text-align: center;">
+   <select input id="input-Machine" [(ngModel)]="Machine" input type="text" onfocus="this.value=''"
+      (change)="itemService.getMachine($any($event.target).value)" style="height: 4vh;
+                        width: 5vw;
+                        color: black;
+                        font-weight: 900;
+                        text-align: center;
+                        margin-bottom: 1vh; border: 1px solid rgba(32, 32, 32, 0.432) !important;">
+      <option style="font-weight: 900;font-size: large;" value=""></option>
+      <option *ngIf="QPP" style="font-weight: 900;font-size: large;" value="A03/A04">A03/A04</option>
+      <option *ngIf="QPP" style="font-weight: 900;font-size: large;" value="A05/A07">A05/A07</option>
+      <option *ngIf="QPP" style="font-weight: 900;font-size: large;" value="A06/A08">A06/A08</option>
+      <option *ngIf="QPP" style="font-weight: 900;font-size: large;" value="A09/A11">A09/A11</option>
+      <option *ngIf="QPP" style="font-weight: 900;font-size: large;" value="A13/A15">A13/A15</option>
+      <option *ngIf="QPP" style="font-weight: 900;font-size: large;" value="A17/A19">A17/A19</option>
+      <option *ngIf="QPP" style="font-weight: 900;font-size: large;" value="A21/...">A21/...</option>
+      <option *ngIf="KB" style="font-weight: 900;font-size: large;background-color: rgba(185, 185, 185, 0.671);"
+         value="KA /KB ">KA
+         /KB </option>
+      <option *ngIf="KB" style="font-weight: 900;font-size: large;background-color: rgba(185, 185, 185, 0.671)"
+         value="KC /KD ">
+         KC
+         /KD </option>
+      <option *ngIf="KB" style="font-weight: 900;font-size: large;background-color: rgba(185, 185, 185, 0.671)"
+         value="KE /KF ">
+         KE
+         /KF </option>
+      <option *ngIf="KB" style="font-weight: 900;font-size: large;background-color: rgba(185, 185, 185, 0.671)"
+         value="KS /KCD">
+         KS
+         /KCD</option>
+
+      <option *ngIf="QS" style="font-weight: 900;font-size: large;background-color: rgba(185, 185, 185, 0.671);"
+         value="B01/B02">B01/B02 </option>
+      <option *ngIf="QS" style="font-weight: 900;font-size: large;background-color: rgba(185, 185, 185, 0.671)"
+         value="B03/B04">B03/B04</option>
+      <option *ngIf="QS" style="font-weight: 900;font-size: large;background-color: rgba(185, 185, 185, 0.671)"
+         value="B05/... ">B05/... </option>
+      <option *ngIf="QS" style="font-weight: 900;font-size: large;background-color: rgba(185, 185, 185, 0.671)"
+         value="BSL/BCD">BSL/BCD</option>
+
+   </select>
+
+</div>
+<div class="three columns">
+   <table style=" border-radius: 5px; border: 2px solid; height: 16vh;width: 12vw; margin-top:
+                  23vh;margin-left: 12vw;font-size: 12vh;padding-left: 1vw;">{{this.itemService.MachineRight}}
+   </table>
+</div>

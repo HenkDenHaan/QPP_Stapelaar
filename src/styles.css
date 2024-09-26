@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+.row {
+   max-width: 100%;
+}
+
+.deepRed {
+   color: #ff0000 !important;
+   font-style: italic;
+
+}
+
+.green {
+   background-color: greenyellow !important;
+   font-size: 15px;
+
+}
+
+.orange {
+   background-color: rgb(255, 165, 0) !important;
+   font-size: 15px;
+
+}
+
+.normal {
+   font-size: 15px;
+}

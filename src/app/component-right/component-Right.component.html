@@ -1,0 +1,109 @@
+<div class="four columns " style="margin-left: 0vw;">
+   <div class="four columns ">
+      <div class=" empty" style="height: 1.3vh;">
+      </div>
+      <div class="Description" for="PRODDATUM">DATUM </div>
+      <div class="empty"></div>
+      <div class="Description" for="EAN-CODE">EAN</div>
+      <div class="empty"></div>
+      <div class="Description" for="THT">THT </div>
+      <div *ngIf="BANOhand">
+         <div class="empty" style="height: 3vh;"></div>
+         <div class="Description" for="Partijnr">PARTIJNR. </div>
+      </div>
+   </div>
+   <div class="eight columns">
+
+      <div class="inputfield"><input soho-datepicker #tProductionDateRight id="tProductionDateRight"
+            data-automation-id="custom-automation-id" data-options="{'dateFormat': 'dd-MM-yyyy'}" class="datepicker"
+            [(ngModel)]="ProductionDateRight" (change)="LoadOrdersRight($event)" name="ProductionDateRight" type="text"
+            data-init="false" style="width: 100%" /></div>
+      <div class="inputfield"><input id="input-EANcodeRight" [(ngModel)]="EANcodeRight" input type="text"
+            onfocus="this.value=''" (change)="LoadOrdersRight($event)">
+      </div>
+      <div class="inputfield"><input soho-datepicker #tExpirationDateRight id="tExpirationDateRight"
+            data-automation-id="custom-automation-id" data-options="{'dateFormat': 'dd-MM-yyyy'}" class="String"
+            [(ngModel)]="ExpirationDateRight" (change)="getExpiDateRight($event)" name="ExpirationDate" type="text"
+            data-init="false" style="width: 100%" /></div>
+      <div *ngIf="BANOhand">
+         <div class="inputfield"><input id="input-BANORight" [(ngModel)]="BANORight" (change)="getBANORight($event)"
+               name="BANORight" type="text" onfocus="this.value=''" style="text-transform: uppercase;">
+         </div>
+      </div>
+      <div class="BlancLine" style="min-height: 2vh;"></div>
+
+   </div>
+   <table style="margin-left: 1vw;">
+      <tr>
+         <td class="remark">{{this.RemarkRight}} </td>
+      </tr>
+      <tr>
+         <div class="BlancLine" style="min-height: 2vh;"></div>
+      </tr>
+      <tr>
+         <td class="remark2">{{this.RemarkRight_ST=="ST"?'otrzymana ilosc woreczkow / per zak ontvangen':""}} </td>
+      </tr>
+   </table>
+</div>
+<div class="one columns ">
+   <div class="DescriptionSmall" for="PRNO">Productieorder </div>
+   <div class="DescriptionSmall" for="FUDS">Omschrijving </div>
+   <div class="DescriptionSmall" for="CUNM">Klant </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="DescriptionSmall" for="BANO">Lotcode </div>
+   <div class="DescriptionSmall" for="Tht">ThT </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="DescriptionSmall" for="ORQT">Orderaantal </div>
+   <div class="DescriptionSmall" for="RVQA">Reeds geproduceerd </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="DescriptionSmall" for="Pallet">Type pallet </div>
+   <div class="DescriptionSmall" for="Krat">Type krat </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="DescriptionSmall" for="MTNO">Halffabrikaatnr. </div>
+   <div class="DescriptionSmall" for="MTNOname">Naam halffabrikaat </div>
+   <div class="DescriptionSmall" for="Stock">Voorraad in trechter </div>
+</div>
+<div class="seven columns " style="margin-left: 1vw;">
+   <div *ngIf="this.selectedRow">
+      <div class="value">{{!this.selectedProductRight?" ":this.selectedProductRight+' - '+
+         this.selectedProductionOrderNumberRight}}</div>
+      <div class="value">{{this.selectedProductionOrderDescriptionRight }} </div>
+      <div class="value">{{this.CUNMRight }} </div>
+      <div class="BlancLine" style="height: 1.3vh;"></div>
+      <div class="value">{{this.ExistingLotcodeRight}} </div>
+      <div class="value">{{this.ExistingThTRight=="00-00-0000"? " " :this.ExistingThTRight }}</div>
+      <div class="BlancLine" style="height: 1.3vh;"></div>
+      <div class="value">{{this.OrderQuantityRight }} </div>
+      <div class="value">{{this.AlreadyProducedRight=="0"?" ":this.AlreadyProducedRight }} </div>
+      <div class="BlancLine" style="height: 1.3vh;"></div>
+      <div class="value">{{this.PalletRight}} </div>
+      <div class="value">{{this.KratRight=="Niet verwijderen"? " ":this.KratRight}} </div>
+      <div class="BlancLine" style="height: 1.3vh;"></div>
+      <div class="value">{{this.MTNORight}}{{this.itemService.MachineRight!="KCD"?"":' / '+this.MTNORight2}} </div>
+      <div class="value">{{this.itemService.MachineRight=="KCD"?this.MTNOnameRight1+' /
+         '+this.MTNOnameRight2:this.MTNOnameRight}}
+      </div>
+      <div class="value">{{this.StockRight=="0"? " ": this.StockRight}}{{this.itemService.MachineRight!="KCD"?"":
+         ' /
+         '+this.StockRight2}}{{this.ConnectedOrderStatus!=""&&this.ConnectedOrderStatus!="90"&&this.ConnectedOrderStatus2!=""?"
+         (*)":""}}
+      </div>
+      <!-- <div class="value">{{this.MFNORight}} {{this.ConnectedOrderStatus}}/{{this.ConnectedOrderStatus2}}</div> -->
+   </div>
+</div>
+
+<div class="twelve columns max" style="height: 45vh;margin-left: 1vw">
+   <div class="BlancLine" style="height: 1vh;"></div>
+
+   <div #datagrid id="datagridright" soho-datagrid [gridOptions]="dataGridOptions" [data]="dataGridOptions?.dataset"
+      *ngIf="isValid" (selected)="onSelectedRight($event) ">
+   </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <input id="input-QuantityToReceiveRight" [(ngModel)]="QuantityToReceiveRight"
+      (keydown.enter)="ReceiveQuantityRight($event)" *ngIf="isValid"
+      style="width: 4vw;margin-left: 18vw;text-align: center;" onfocus="this.value=''" />
+   <button style="margin-left: 10px;" soho-button="primary" *ngIf="isValid"
+      (click)="ReceiveQuantityRight($event)">Ontvangen</button>
+   <button style="margin-left: 10px;height:45vh;margin-top: -1.5vh;width: 48vw;" soho-button="secondary"
+      *ngIf="isValid===false" [blockUI]="true"> Wait a moment please...{{display | date :"HH:mm:ss":'UTC'}}</button>
+</div>

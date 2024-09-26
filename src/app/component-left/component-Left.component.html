@@ -1,0 +1,109 @@
+<div class="four columns " style="margin-left: 0vw;">
+   <div class="four columns ">
+      <div class=" empty" style="height: 1.3vh;">
+      </div>
+      <div class="Description" for="PRODDATUM">DATUM </div>
+      <div class="empty"></div>
+      <div class="Description" for="EAN-CODE">EAN</div>
+      <div class="empty"></div>
+      <div class="Description" for="THT">THT </div>
+      <div *ngIf="BANOhand">
+         <div class="empty" style="height: 3vh;"></div>
+         <div class="Description" for="Partijnr">PARTIJNR. </div>
+      </div>
+   </div>
+   <div class="eight columns">
+
+      <div class="inputfield"><input soho-datepicker #tProductionDateLeft id="tProductionDateLeft"
+            data-automation-id="custom-automation-id" data-options="{'dateFormat': 'dd-MM-yyyy'}" class="datepicker"
+            [(ngModel)]="ProductionDateLeft" (change)="LoadOrdersLeft($event)" name="ProductionDateLeft" type="text"
+            data-init="false" style="width: 100%" /></div>
+      <div class="inputfield"><input id="input-EANcodeLeft" [(ngModel)]="EANcodeLeft" input type="text"
+            onfocus="this.value=''" (change)="LoadOrdersLeft($event)">
+      </div>
+      <div class="inputfield"><input soho-datepicker #tExpirationDateLeft id="tExpirationDateLeft"
+            data-automation-id="custom-automation-id" data-options="{'dateFormat': 'dd-MM-yyyy'}" class="String"
+            [(ngModel)]="ExpirationDateLeft" (change)="getExpiDateLeft($event)" name="ExpirationDate" type="text"
+            data-init="false" style="width: 100%" /></div>
+      <div *ngIf="BANOhand">
+         <div class="inputfield"><input id="input-BANOLeft" [(ngModel)]="BANOLeft" (change)="getBANOLeft($event)"
+               name="BANOLeft" type="text" onfocus="this.value=''" style="text-transform: uppercase;">
+         </div>
+      </div>
+      <div class="BlancLine" style="min-height: 2vh;"></div>
+
+   </div>
+   <table style="margin-left: 1vw;">
+      <tr>
+         <td class="remark">{{this.RemarkLeft}} </td>
+      </tr>
+      <tr>
+         <div class="BlancLine" style="min-height: 2vh;"></div>
+      </tr>
+      <tr>
+         <td class="remark2">{{this.RemarkLeft_ST=="ST"?'otrzymana ilosc woreczkow / per zak ontvangen':""}} </td>
+      </tr>
+   </table>
+</div>
+<div class="one columns ">
+   <div class="DescriptionSmall" for="PRNO">Productieorder </div>
+   <div class="DescriptionSmall" for="FUDS">Omschrijving </div>
+   <div class="DescriptionSmall" for="CUNM">Klant </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="DescriptionSmall" for="BANO">Lotcode </div>
+   <div class="DescriptionSmall" for="Tht">ThT </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="DescriptionSmall" for="ORQT">Orderaantal </div>
+   <div class="DescriptionSmall" for="RVQA">Reeds geproduceerd </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="DescriptionSmall" for="Pallet">Type pallet </div>
+   <div class="DescriptionSmall" for="Krat">Type krat </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="DescriptionSmall" for="MTNO">Halffabrikaatnr. </div>
+   <div class="DescriptionSmall" for="MTNOname">Naam halffabrikaat </div>
+   <div class="DescriptionSmall" for="Stock">Voorraad in trechter </div>
+</div>
+<div class="seven columns " style="margin-left: 1vw;">
+   <div *ngIf="this.selectedRow">
+      <div class="value">{{!this.selectedProductLeft?" ":this.selectedProductLeft+' - '+
+         this.selectedProductionOrderNumberLeft}}</div>
+      <div class="value">{{this.selectedProductionOrderDescriptionLeft }} </div>
+      <div class="value">{{this.CUNMLeft }} </div>
+      <div class="BlancLine" style="height: 1.3vh;"></div>
+      <div class="value">{{this.ExistingLotcodeLeft}} </div>
+      <div class="value">{{this.ExistingThTLeft=="00-00-0000"? " " :this.ExistingThTLeft }}</div>
+      <div class="BlancLine" style="height: 1.3vh;"></div>
+      <div class="value">{{this.OrderQuantityLeft }} </div>
+      <div class="value">{{this.AlreadyProducedLeft=="0"?" ":this.AlreadyProducedLeft }} </div>
+      <div class="BlancLine" style="height: 1.3vh;"></div>
+      <div class="value">{{this.PalletLeft}} </div>
+      <div class="value">{{this.KratLeft=="Niet verwijderen"? " ":this.KratLeft}} </div>
+      <div class="BlancLine" style="height: 1.3vh;"></div>
+      <div class="value">{{this.MTNOLeft}}{{this.itemService.MachineLeft!="KCD"?"":' / '+this.MTNOLeft2}} </div>
+      <div class="value">{{this.itemService.MachineLeft=="KCD"?this.MTNOnameLeft1+' /
+         '+this.MTNOnameLeft2:this.MTNOnameLeft}}
+      </div>
+      <div class="value">{{this.StockLeft=="0"? " ": this.StockLeft}}{{this.itemService.MachineLeft!="KCD"?"":
+         ' /
+         '+this.StockLeft2}}{{this.ConnectedOrderStatus!=""&&this.ConnectedOrderStatus!="90"&&this.ConnectedOrderStatus2!=""?"
+         (*)":""}}
+      </div>
+      <!-- <div class="value">{{this.MFNOLeft}} {{this.ConnectedOrderStatus}}/{{this.ConnectedOrderStatus2}}</div> -->
+   </div>
+</div>
+
+<div class="twelve columns max" style="height: 45vh;margin-left: 1vw">
+   <div class="BlancLine" style="height: 1vh;"></div>
+
+   <div #datagrid id="datagridLeft" soho-datagrid [gridOptions]="dataGridOptions" [data]="dataGridOptions?.dataset"
+      *ngIf="isValid" (selected)="onSelectedLeft($event) ">
+   </div>
+   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <input id="input-QuantityToReceiveLeft" [(ngModel)]="QuantityToReceiveLeft"
+      (keydown.enter)="ReceiveQuantityLeft($event)" *ngIf="isValid"
+      style="width: 4vw;margin-left: 18vw;text-align: center;" onfocus="this.value=''" />
+   <button style="margin-left: 10px;" soho-button="primary" *ngIf="isValid"
+      (click)="ReceiveQuantityLeft($event)">Ontvangen</button>
+   <button style="margin-left: 10px;height:45vh;margin-top: -1.5vh;width: 48vw;" soho-button="secondary"
+      *ngIf="isValid===false" [blockUI]="true"> Wait a moment please...{{display | date :"HH:mm:ss":'UTC'}}</button>
+</div>
