@@ -299,7 +299,7 @@ export class ComponentLeftComponent {
       this.stopTime = this.stopTime
       this.active = true
       this.timer()
-
+      this.StockLeft = "";
       this.itemService.loadComponentLeft(this.EANcodeLeft, this.ProdApiDateLeft)
       this.itemService.setSelectedOrderLeft(this.selectedProductionOrderNumberLeft);
 
@@ -330,7 +330,7 @@ export class ComponentLeftComponent {
       this.itemService.setCheckConnectedOrdersLeft2(this.MFNOLeft)
 
       const delay = ms => new Promise(res => setTimeout(res, ms));
-      await delay(500)
+      await delay(1000)
       const MTNOLeft = this.selectedRow['VMMTNO'];
       const RemainToReceive = Number(this.RemainToReceiveLeft);
       const AlreadyProduced = Number(this.AlreadyProducedLeft);
@@ -343,7 +343,7 @@ export class ComponentLeftComponent {
       const STAQ = Number(this.StockLeft);
       const MTNOQtyLeft = Number(this.MTNOQtyLeft);
       const StockSTAS = this.StockSTAS;
-      const STAQ2 = this.StockLeft2;
+      const STAQ2 = Number(this.StockLeft2);
       const WHSL = this.itemService.MTNOStockLocationLeft;
       this.itemService.getConnectedOrderLeftDataEventEmitter().subscribe(x => this.ConnectedOrderStatus = x.items[0].WHST)
       const VHWHST = this.VHWHST;
@@ -480,8 +480,9 @@ export class ComponentLeftComponent {
                      for (let i = 0; i < 10; i++) {
                         this.itemService.loadComponentLeft(this.EANcodeLeft, this.ProdApiDateLeft);
                         this.itemService.setSelectedOrderLeft(this.selectedProductionOrderNumberLeft);
+                        this.StockLeft = 0;
                         this.itemService.setStockLeft(MTNOLeft, WHSL);
-
+                        await delay(1000)
                         const StockBefore = Number(STAQ)
                         const StockAfter = Number(this.StockLeft)
                         const AlreadyProducedAfter = Number(this.AlreadyProducedLeft);
@@ -490,14 +491,16 @@ export class ComponentLeftComponent {
                            this.showMessageModal3('Label voor ' + this.MAQA + ' stuks wordt geprint!', 'Label is printing!', 'Etykieta jest drukowana!')
                            this.messageModal3.afterClose(() => {
                            })
+                           await delay(5000)
                            this.isValid = true;
                            return;
-
                         } else {
-                           await delay(2000)
+                           await delay(1500)
                         }
-
                      }
+
+                     const StockBefore = Number(STAQ)
+                     const StockAfter = Number(this.StockLeft)
                      this.showMessageModal3('Ontvangst niet uitgevoerd! Probeer opnieuw of vraag hulp.', 'Reception not carried out! Please try again or ask for help.', 'Odbiór nie został przeprowadzony! Spróbuj ponownie lub poproś o pomoc.')
                      this.messageModal3.afterClose(() => {
                         this.isValid = true;
@@ -506,9 +509,12 @@ export class ComponentLeftComponent {
                }
             }
          }
+         await delay(1000)
          this.itemService.loadComponentLeft(this.EANcodeLeft, this.ProdApiDateLeft)
          this.itemService.setSelectedOrderLeft(this.selectedProductionOrderNumberLeft);
          this.itemService.setStockLeft(MTNOLeft, WHSL);
+         await delay(1000)
+         this.itemService.getStockLeftDataEventEmitter().subscribe(x => this.StockLeft = Number(x.items[0].STQT).toFixed(0));
          this.isValid = true
       }
    }
@@ -672,8 +678,9 @@ export class ComponentLeftComponent {
                            for (let i = 0; i < 10; i++) {
                               this.itemService.loadComponentLeft(this.EANcodeLeft, this.ProdApiDateLeft);
                               this.itemService.setSelectedOrderLeft(this.selectedProductionOrderNumberLeft);
+                              this.StockLeft = 0;
                               this.itemService.setStockLeft(MTNOLeft, WHSL);
-
+                              await delay(1000)
                               const StockBefore = Number(STAQ)
                               const StockAfter = Number(this.StockLeft)
                               const AlreadyProducedAfter = Number(this.AlreadyProducedLeft);
@@ -682,14 +689,18 @@ export class ComponentLeftComponent {
                                  this.showMessageModal3('Label voor ' + this.MAQA + ' stuks wordt geprint!', 'Label is printing!', 'Etykieta jest drukowana!')
                                  this.messageModal3.afterClose(() => {
                                  })
+                                 await delay(5000)
                                  this.isValid = true;
                                  return;
-
                               } else {
-                                 await delay(2000)
+                                 await delay(1500)
                               }
-
                            }
+
+                           const StockBefore = Number(STAQ)
+                           this.itemService.setStockLeft(MTNOLeft, WHSL);
+                           this.itemService.getStockLeftDataEventEmitter().subscribe(x => this.StockLeft = Number(x.items[0].STQT).toFixed(0));
+                           const StockAfter = Number(this.StockLeft)
                            this.showMessageModal3('Ontvangst niet uitgevoerd! Probeer opnieuw of vraag hulp.', 'Reception not carried out! Please try again or ask for help.', 'Odbiór nie został przeprowadzony! Spróbuj ponownie lub poproś o pomoc.')
                            this.messageModal3.afterClose(() => {
                               this.isValid = true;

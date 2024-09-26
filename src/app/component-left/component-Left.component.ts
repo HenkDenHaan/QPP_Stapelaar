@@ -177,11 +177,11 @@ export class ComponentLeftComponent {
          this.showMessageModal2('Gebruik andere machine', 'Use other machine ', 'Uzyj innej maszyny');
          return
       }
-      if (this.EANcodeLeft === "CD" && this.itemService.MachineLeft != "KCD") {
+      if (this.EANcodeLeft === "CD" && this.itemService.MachineLeft != "BSL") {
          this.showMessageModal2('Gebruik machine KCD', 'Use machine KCD ', 'wybierz maszyny KCD ');
          return;
       }
-      if (this.itemService.MachineLeft === "KCD") { this.EANcodeLeft = 'CD' }
+      if (this.itemService.MachineLeft === "BSL") { this.EANcodeLeft = 'CD' }
       let apiDate: any;
       apiDate = this.ProductionDateLeft;
       this.ProdApiDateLeft = apiDate.substring(6, 10) + apiDate.substring(3, 5) + apiDate.substring(0, 2);
@@ -211,13 +211,13 @@ export class ComponentLeftComponent {
       this.ConnectedOrderStatus2 = '';
       this.isValid = true
 
-      if (this.itemService.MachineLeft === "KCD") { this.EANcodeLeft = 'CD' }
+      if (this.itemService.MachineLeft === "BSL") { this.EANcodeLeft = 'CD' }
    }
 
    onSelectedLeft(event: any) {
 
       this.BANOLeft = "";
-      if (this.itemService.MachineLeft === "KS " || this.itemService.MachineLeft === "KCD") {
+      if (this.itemService.MachineLeft === "BSL" || this.itemService.MachineLeft === "BSL") {
          this.BANOhand = true
       } else {
          this.BANOhand = false
@@ -370,12 +370,12 @@ export class ComponentLeftComponent {
                   this.isValid = true;
                   return;
                }
-               if ((this.itemService.MachineLeft === "KS " || this.itemService.MachineLeft === "KCD") && (this.BANOLeft === '' || !this.BANOLeft)) {
+               if ((this.itemService.MachineLeft === "BSL" || this.itemService.MachineLeft === "BSL") && (this.BANOLeft === '' || !this.BANOLeft)) {
                   this.showMessageModal2('Partijnummer niet gevuld', 'Lotcode not filled  ', 'ThT nie jest wypełniony');
                   this.isValid = true;
                   return;
                }
-               if (this.itemService.MachineLeft === "KCD" || this.itemService.MachineLeft === "KS ") {
+               if (this.itemService.MachineLeft === "BSL" || this.itemService.MachineLeft === "BSL") {
                   const NewBANO = (this.BANOLeft.substring(0, 6) + '-' + this.ExpiApiDate.substring(0, 2)).toUpperCase();
                   this.showMessageModal('ThT en Lotcode akkoord?', ' ThT and Lot code approved?', 'Zatwierdzone kody ThT i Lot?', 'ThT &emsp;&emsp;&emsp;:&ensp;' + this.WarningExpiDate, 'Lotcode &emsp;&nbsp;:&ensp;' + NewBANO);
                } else {
@@ -421,19 +421,19 @@ export class ComponentLeftComponent {
                            }
                         }
                      } else {
-                        if ((this.itemService.MachineLeft === "KS " && STAQ <= 0) || (this.itemService.MachineLeft === "KCD" && (STAQ <= 0 || STAQ2 <= 0))) {
+                        if ((this.itemService.MachineLeft === "BSL" && STAQ <= 0) || (this.itemService.MachineLeft === "BSL" && (STAQ <= 0 || STAQ2 <= 0))) {
                            this.showMessageModal2('Geen voorraad!', 'Not enough stock!', 'Wza mało zapasów!');
                            this.isValid = true;
                            return;
                         }
                         const MaxMAQA = STAQ / MTNOQtyLeft
                         const MaxMAQA2 = STAQ2 / MTNOQtyLeft
-                        if ((this.itemService.MachineLeft === "KS " && MaxMAQA < this.MAQA)) {
+                        if ((this.itemService.MachineLeft === "BSL" && MaxMAQA < this.MAQA)) {
                            this.showMessageModal2('Er kunnen maximaal ' + MaxMAQA + 'st. worden ontvangen', 'Quantity to large! Max. ' + MaxMAQA + ' pieces can be received with current stock', 'Ilość za duża! Maks. W aktualnych stanach magazynowych można otrzymać ' + MaxMAQA + ' sztuk');
                            this.isValid = true;
                            return;
                         }
-                        if (this.itemService.MachineLeft === "KCD" && (MaxMAQA < this.MAQA || MaxMAQA2 < this.MAQA)) {
+                        if (this.itemService.MachineLeft === "BSL" && (MaxMAQA < this.MAQA || MaxMAQA2 < this.MAQA)) {
                            if (MaxMAQA <= MaxMAQA2) {
                               this.showMessageModal2('Er kunnen maximaal ' + MaxMAQA + 'st. worden ontvangen', 'Quantity to large! Max. ' + MaxMAQA + ' pieces can be received with current stock', 'Ilość za duża! Maks. W aktualnych stanach magazynowych można otrzymać ' + MaxMAQA + ' sztuk');
                               this.isValid = true;
@@ -444,7 +444,7 @@ export class ComponentLeftComponent {
                               return;
                            }
                         }
-                        if (StockSTAS === "3" && this.itemService.MachineLeft.startsWith("K")) {
+                        if (StockSTAS === "3" && this.itemService.MachineLeft.startsWith("B")) {
                            this.showMessageModal2('Voorraad in trechter geblokkeerd!', 'Stock in funnel blocked!', 'Wsyp/podajnik w trakcie zablokowany!');
                            this.isValid = true;
                            return;
@@ -569,10 +569,10 @@ export class ComponentLeftComponent {
                      this.ExpirationDateLeft = this.WarningExpiDate
                   }
 
-                  if ((!this.itemService.MachineLeft.startsWith("K") && (checkExpiDate < THTMin || checkExpiDate > THTMax)) || (this.itemService.MachineLeft.startsWith("K") && (checkExpiDate < THTMinKB || checkExpiDate > THTMaxKB))) {
+                  if ((!this.itemService.MachineLeft.startsWith("B") && (checkExpiDate < THTMin || checkExpiDate > THTMax)) || (this.itemService.MachineLeft.startsWith("B") && (checkExpiDate < THTMinKB || checkExpiDate > THTMaxKB))) {
                      this.showMessageModal2('ThT ' + this.WarningExpiDate + ' valt buiten bereik', 'Experation date ' + this.WarningExpiDate + ' is out of range', 'Data ważności ' + this.WarningExpiDate + ' jest poza zakresem');
                   } else {
-                     if (this.itemService.MachineLeft === "KCD" || this.itemService.MachineLeft === "KS ") {
+                     if (this.itemService.MachineLeft === "BSL" || this.itemService.MachineLeft === "BSL") {
                         const NewBANO = (this.BANOLeft.substring(0, 6) + '-' + this.ExpiApiDate.substring(0, 2)).toUpperCase();
                         const mformsResponse = this.formService.launch('mforms://_automation?data=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%3csequence%3e%3cstep+command%3d%22RUN%22+value%3d%22PMS100%22+%2f%3e%3cstep+command%3d%22AUTOSET%22%3e%3cfield+name%3d%22WWQTTP%22%3e11%3c%2ffield%3e%3c%2fstep%3e%3cstep+command%3d%22KEY%22+value%3d%22ENTER%22+%2f%3e%3cstep+command%3d%22AUTOSET%22%3e%3cfield+name%3d%22WHFACI%22%3e' + FACI + '%3c%2ffield%3e%3cfield+name%3d%22WFWHST%22%3e%3c%2ffield%3e%3cfield+name%3d%22WTWHST%22%3e%3c%2ffield%3e%3cfield+name%3d%22W1OBKV%22%3e' + MFNO + '%3c%2ffield%3e%3cfield+name%3d%22W2OBKV%22%3e' + PRNO + '%3c%2ffield%3e%3c%2fstep%3e%3cstep+command%3d%22KEY%22+value%3d%22ENTER%22+%2f%3e%3cstep+command%3d%22AUTOSET%22%3e%3cfield+name%3d%22SELROWS%22%3eR1%3c%2ffield%3e%3c%2fstep%3e%3cstep+command%3d%22LSTOPT%22+value%3d%222%22+%2f%3e%3cstep+command%3d%22AUTOSET%22%3e%3cfield+name%3d%22WHBANO%22%3e' + NewBANO + '%3c%2ffield%3e%3cfield+name%3d%22WWMEXP%22%3e' + EXPI + '%3c%2ffield%3e%3c%2fstep%3e%3cstep+command%3d%22KEY%22+value%3d%22ENTER%22+%2f%3e%3cstep+command%3d%22KEY%22+value%3d%22F3%22+%2f%3e%3cstep+command%3d%22KEY%22+value%3d%22F3%22+%2f%3e%3cstep+%2f%3e%3c%2fsequence%3e');
                         await delay(500);
@@ -620,19 +620,19 @@ export class ComponentLeftComponent {
                                  }
                               }
                            } else {
-                              if ((this.itemService.MachineLeft === "KS " && STAQ <= 0) || (this.itemService.MachineLeft === "KCD" && (STAQ <= 0 || STAQ2 <= 0))) {
+                              if ((this.itemService.MachineLeft === "BSL" && STAQ <= 0) || (this.itemService.MachineLeft === "BSL" && (STAQ <= 0 || STAQ2 <= 0))) {
                                  this.showMessageModal2('Geen voorraad!', 'Not enough stock!', 'Wza mało zapasów!');
                                  this.isValid = true;
                                  return;
                               }
                               const MaxMAQA = STAQ / MTNOQtyLeft
                               const MaxMAQA2 = STAQ2 / MTNOQtyLeft
-                              if ((this.itemService.MachineLeft === "KS " && MaxMAQA < this.MAQA)) {
+                              if ((this.itemService.MachineLeft === "BSL" && MaxMAQA < this.MAQA)) {
                                  this.showMessageModal2('Er kunnen maximaal ' + MaxMAQA + 'st. worden ontvangen', 'Quantity to large! Max. ' + MaxMAQA + ' pieces can be received with current stock', 'Ilość za duża! Maks. W aktualnych stanach magazynowych można otrzymać ' + MaxMAQA + ' sztuk');
                                  this.isValid = true;
                                  return;
                               }
-                              if (this.itemService.MachineLeft === "KCD" && (MaxMAQA < this.MAQA || MaxMAQA2 < this.MAQA)) {
+                              if (this.itemService.MachineLeft === "BSL" && (MaxMAQA < this.MAQA || MaxMAQA2 < this.MAQA)) {
                                  if (MaxMAQA <= MaxMAQA2) {
                                     this.showMessageModal2('Er kunnen maximaal ' + MaxMAQA + 'st. worden ontvangen', 'Quantity to large! Max. ' + MaxMAQA + ' pieces can be received with current stock', 'Ilość za duża! Maks. W aktualnych stanach magazynowych można otrzymać ' + MaxMAQA + ' sztuk');
                                     this.isValid = true;
@@ -643,7 +643,7 @@ export class ComponentLeftComponent {
                                     return;
                                  }
                               }
-                              if (StockSTAS === "3" && this.itemService.MachineLeft.startsWith("K")) {
+                              if (StockSTAS === "3" && this.itemService.MachineLeft.startsWith("B")) {
                                  this.showMessageModal2('Voorraad in trechter geblokkeerd!', 'Stock in funnel blocked!', 'Wsyp/podajnik w trakcie zablokowany!');
                                  this.isValid = true;
                                  return;

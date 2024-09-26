@@ -24,7 +24,7 @@ export class AppComponent extends CoreBase implements OnInit {
    messageModal3: import("ids-enterprise-ng").SohoModalDialogRef<unknown>;
    KB: boolean = false;//Kronenburg
    QPP: boolean = false;
-   QS: boolean = false;; // Quiks Specialties
+   QS: boolean = false; // Quiks Specialties
 
 
    constructor(private miService: MIService, private userService: UserService, public itemService: ItemService, private formService: ApplicationService, private sohoModalService: SohoModalDialogService, public Authorization: Authorization) {
