@@ -13,7 +13,6 @@
       </div>
    </div>
    <div class="eight columns">
-
       <div class="inputfield"><input soho-datepicker #tProductionDateRight id="tProductionDateRight"
             data-automation-id="custom-automation-id" data-options="{'dateFormat': 'dd-MM-yyyy'}" class="datepicker"
             [(ngModel)]="ProductionDateRight" (change)="LoadOrdersRight($event)" name="ProductionDateRight" type="text"
@@ -98,12 +97,32 @@
    <div #datagrid id="datagridright" soho-datagrid [gridOptions]="dataGridOptions" [data]="dataGridOptions?.dataset"
       *ngIf="isValid" (selected)="onSelectedRight($event) ">
    </div>
-   <div class="BlancLine" style="height: 1.3vh;"></div>
+   <div class="BlancLine" style="height: 3.3vh;"></div>
    <input id="input-QuantityToReceiveRight" [(ngModel)]="QuantityToReceiveRight"
       (keydown.enter)="ReceiveQuantityRight($event)" *ngIf="isValid"
       style="width: 4vw;margin-left: 18vw;text-align: center;" onfocus="this.value=''" />
    <button style="margin-left: 10px;" soho-button="primary" *ngIf="isValid"
       (click)="ReceiveQuantityRight($event)">Ontvangen</button>
-   <button style="margin-left: 10px;height:45vh;margin-top: -1.5vh;width: 48vw;" soho-button="secondary"
-      *ngIf="isValid===false" [blockUI]="true"> Wait a moment please...{{display | date :"HH:mm:ss":'UTC'}}</button>
+
+   <div class="six columns">
+      <div style="border: 2px solid rgb(0, 110, 255) !important;border-radius: 5px;text-align: center;margin-left:
+         -1vw;height:45vh;margin-top: -3vh;width: 48vw;padding-top: 18vh;font-size:
+         20px;font-weight: bold;color: rgb(0, 110, 255);" soho-button="secondary" *ngIf="isValid===false"
+         [blockUI]="true"> Wait a moment
+         please...{{display | date
+         :"HH:mm:ss":'UTC'}}</div>
+   </div>
+
+   <div class="six columns">
+      <div *ngIf="ShowCAMU">
+         <div class="BlancLine" style="margin-left: -9vw;height:15vh;margin-top: 12vh;width: 17vw;background-color: rgb(0, 110, 255);font-size:
+         20px;font-weight: bold;color:white;border: 2px solid black !important;border-radius: 5px;text-align: center;">
+            <div style="margin-top: 1vh;">Geef Karnummer in</div>
+            <div>
+               <input id="input-Karnummer" [(ngModel)]="KarnummerInput" (keydown.enter)="SetKarnummer($event)"
+                  style="width: 5vw;margin-top: 2vh;text-align: center;" onfocus="this.value=''" />
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
