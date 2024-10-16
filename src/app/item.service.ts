@@ -58,6 +58,8 @@ export class ItemService {
    WHLOLeft: any;
    MTNORight2: String;
    MTNOLeft2: String;
+   MTNOStockLocationLeft2: any;
+   MTNOStockLocationRight2: any;
 
 
 
@@ -165,10 +167,10 @@ export class ItemService {
    public getStockLeftDataEventEmitter2(): EventEmitter<IMIResponse> {
       return this.StockLeftDataEventEmitter2;
    }
-   setStockLeft2(MTNO: String, MTNOStockLocationLeft: String) {
+   setStockLeft2(MTNO: String, MTNOStockLocationLeft2: String) {
       this.MTNOLeft2 = MTNO;
-      this.MTNOStockLocationLeft = MTNOStockLocationLeft;
-      this.loadStockLeft();
+      this.MTNOStockLocationLeft2 = MTNOStockLocationLeft2;
+      this.loadStockLeft2();
    }
 
    loadStockLeft2() {
@@ -178,7 +180,7 @@ export class ItemService {
          record: {
             WHLO: this.WHLOLeft,
             ITNO: this.MTNOLeft2,
-            WHSL: this.MTNOStockLocationLeft,
+            WHSL: this.MTNOStockLocationLeft2,
             STAS: '2',
          },
          includeMetadata: true,
@@ -347,9 +349,9 @@ export class ItemService {
    public getStockRightDataEventEmitter2(): EventEmitter<IMIResponse> {
       return this.StockRightDataEventEmitter2;
    }
-   setStockRight2(MTNO: String, MTNOStockLocationRight: String) {
+   setStockRight2(MTNO: String, MTNOStockLocationRight2: String) {
       this.MTNORight2 = MTNO;
-      this.MTNOStockLocationRight = MTNOStockLocationRight;
+      this.MTNOStockLocationRight2 = MTNOStockLocationRight2;
       this.loadStockRight2();
    }
 
@@ -360,7 +362,7 @@ export class ItemService {
          record: {
             WHLO: this.WHLORight,
             ITNO: this.MTNORight2,
-            WHSL: this.MTNOStockLocationRight,
+            WHSL: this.MTNOStockLocationRight2,
             STAS: '2',
          },
          includeMetadata: true,
@@ -454,41 +456,37 @@ export class ItemService {
       this.MachineLeft = StockLocation.substring(0, 3);
       this.MachineRight = StockLocation.substring(4, 7);
 
-      if (this.MachineLeft === "KS ") {
-         this.MTNOStockLocationLeft = '210GEPAST'
-         this.WHLOLeft = '210';
+
+      if (this.MachineLeft === "BM1") {
+         this.MTNOStockLocationLeft = '200BMENG1';
+         this.MTNOStockLocationLeft2 = '200BM1SAUS';
+         this.WHLOLeft = '200';
       } else {
-         if (this.MachineLeft === "KCD") {
-            this.MTNOStockLocationLeft = '210EXP'
+         if (this.MachineLeft === "BM2") {
+            this.MTNOStockLocationLeft = '200BMENG2';
+            this.MTNOStockLocationLeft2 = '200BM2SAUS';
             this.WHLOLeft = '200';
          } else {
-            if (this.MachineLeft.substring(0, 1) === "K") {
-               this.MTNOStockLocationLeft = '210INP' + this.MachineLeft.substring(2, 1);
-               this.WHLOLeft = '210';
-            } else {
-               this.MTNOStockLocationLeft = '200INP' + this.MachineLeft;
-               this.WHLOLeft = '200';
-            }
+            this.MTNOStockLocationLeft = '200INP' + this.MachineLeft;
+            this.MTNOStockLocationLeft2 = '200INP' + this.MachineLeft;
+            this.WHLOLeft = '200';
          }
       }
-      if (this.MachineRight === "KS ") {
-         this.MTNOStockLocationRight = '210GEPAST'
-         this.WHLORight = '210';
+
+      if (this.MachineRight === "BM1") {
+         this.MTNOStockLocationRight = '200BMENG1';
+         this.MTNOStockLocationRight2 = '200BM1SAUS';
+         this.WHLORight = '200';
       } else {
-         if (this.MachineRight === "KCD") {
-            this.MTNOStockLocationRight = '210EXP'
+         if (this.MachineRight === "BM2") {
+            this.MTNOStockLocationRight = '200BMENG2';
+            this.MTNOStockLocationRight2 = '200BM2SAUS';
             this.WHLORight = '200';
          } else {
-            if (this.MachineRight.substring(0, 1) === "K") {
-               this.MTNOStockLocationRight = '210INP' + this.MachineRight.substring(2, 1);
-               this.WHLORight = '210';
-            } else {
-               this.MTNOStockLocationRight = '200INP' + this.MachineRight;
-               this.WHLORight = '200';
-            }
+            this.MTNOStockLocationRight = '200INP' + this.MachineRight;
+            this.MTNOStockLocationRight2 = '200INP' + this.MachineRight;
+            this.WHLORight = '200';
          }
       }
-
    }
-
 }

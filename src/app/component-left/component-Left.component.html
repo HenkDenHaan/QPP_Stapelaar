@@ -78,11 +78,14 @@
       <div class="value">{{this.PalletLeft}} </div>
       <div class="value">{{this.KratLeft=="Niet verwijderen"? " ":this.KratLeft}} </div>
       <div class="BlancLine" style="height: 1.3vh;"></div>
-      <div class="value">{{this.MTNOLeft}}{{this.itemService.MachineLeft!="KCD"?"":' / '+this.MTNOLeft2}} </div>
-      <div class="value">{{this.itemService.MachineLeft=="KCD"?this.MTNOnameLeft1+' /
+      <div class="value">{{this.MTNOLeft}}{{this.itemService.MachineLeft!="BCD"?"":' / '+this.MTNOLeft2}} </div>
+      <div class="value">
+         {{this.itemService.MachineLeft=="BCD"?this.MTNOnameLeft1+'
+         /
          '+this.MTNOnameLeft2:this.MTNOnameLeft}}
       </div>
-      <div class="value">{{this.StockLeft=="0"? " ": this.StockLeft}}{{this.itemService.MachineLeft!="KCD"?"":
+      <div class="value">{{this.StockLeft=="0"? " ": this.StockLeft}}{{this.itemService.MachineLeft!="BCD" &&
+         this.itemService.MachineLeft!="BM1"?"":
          ' /
          '+this.StockLeft2}}{{this.ConnectedOrderStatus!=""&&this.ConnectedOrderStatus!="90"&&this.ConnectedOrderStatus2!=""?"
          (*)":""}}

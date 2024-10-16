@@ -46,10 +46,10 @@ export class AppComponent extends CoreBase implements OnInit {
 
                this.MNS410UserID = x.items[0].USID;
 
-               if (this.MNS410UserID === "KRONENBURG") {
+               if (this.user === "KRONENBURG") {
                   this.KB = true
                } else {
-                  if (this.MNS410UserID === "PRD215" || this.MNS410UserID === "PRD216" || this.MNS410UserID === "PRD217" || this.MNS410UserID === "PRD218") {
+                  if (this.user === "PRD215" || this.user === "PRD216" || this.user === "PRD217" || this.user === "PRD218") {
                      this.QS = true;
                      this.QPP = false;
                   } else {
@@ -57,7 +57,7 @@ export class AppComponent extends CoreBase implements OnInit {
                      this.QPP = true
                   }
                }
-               if (this.MNS410UserRole === 'SYS-ALL' || this.MNS410UserID === "MHOL" || this.MNS410UserID === "RLONGAYROU") {
+               if (this.MNS410UserRole === 'SYS-ALL' || this.user === "MHOL" || this.user === "RLONGAYROU") {
                   this.KB = true;
                   this.QPP = true;
                   this.QS = true;
