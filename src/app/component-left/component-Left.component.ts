@@ -524,7 +524,7 @@ export class ComponentLeftComponent {
 
                         if ((AlreadyProducedAfter > AlreadyProduced && this.StockFromFunnel === false) || (AlreadyProducedAfter > AlreadyProduced && this.StockFromFunnel === true && StockAfter < StockBefore)) {
                            if (this.MBWHSL === "200PAST00") {
-                              this.showMessageModal2(this.MAQA + ' stuks geregistreerd!', this.MAQA + ' pieces registered!', this.MAQA + 'liczba zarejestrowanych sztuk!')
+                              this.showMessageModal2(this.MAQA + ' stuks geregistreerd!', this.MAQA + ' pieces registered!', this.MAQA + ' liczba zarejestrowanych sztuk!')
                            } else {
                               this.showMessageModal2('Label voor ' + this.MAQA + ' stuks wordt geprint!', 'Label is printing!', 'Etykieta jest drukowana!')
                            }
@@ -753,7 +753,7 @@ export class ComponentLeftComponent {
 
                               if ((AlreadyProducedAfter > AlreadyProduced && this.StockFromFunnel === false) || (AlreadyProducedAfter > AlreadyProduced && this.StockFromFunnel === true && StockAfter < StockBefore)) {
                                  if (this.MBWHSL === "200PAST00") {
-                                    this.showMessageModal2(this.MAQA + ' stuks geregistreerd!', this.MAQA + ' pieces registered!', this.MAQA + 'liczba zarejestrowanych sztuk!')
+                                    this.showMessageModal2(this.MAQA + ' stuks geregistreerd!', this.MAQA + ' pieces registered!', this.MAQA + ' liczba zarejestrowanych sztuk!')
                                  } else {
                                     this.showMessageModal2('Label voor ' + this.MAQA + ' stuks wordt geprint!', 'Label is printing!', 'Etykieta jest drukowana!')
                                  }
