@@ -437,11 +437,11 @@ export class ComponentLeftComponent {
                            this.isValid = true;
                            return;
                         }
-                        if ((this.itemService.MachineLeft === "BM1" || this.itemService.MachineLeft === "BM2") && (STAQ2 <= 0)) {
-                           this.showMessageModal2('Geen voorraad saus op machinelocatie!', 'No sauce stock at machine location!', 'Brak wywaru w miejscu maszyny!!');
-                           this.isValid = true;
-                           return;
-                        }
+                        // if ((this.itemService.MachineLeft === "BM1" || this.itemService.MachineLeft === "BM2") && (STAQ2 <= 0)) {
+                        //    this.showMessageModal2('Geen voorraad saus op machinelocatie!', 'No sauce stock at machine location!', 'Brak wywaru w miejscu maszyny!!');
+                        //    this.isValid = true;
+                        //    return;
+                        // }
                         const MaxMAQA = STAQ / MTNOQtyLeft
                         const MaxMAQA2 = STAQ2 / MTNOQtyLeft
                         if ((this.itemService.MachineLeft === "BSL" && MaxMAQA < this.MAQA)) {
@@ -667,11 +667,11 @@ export class ComponentLeftComponent {
                                  this.isValid = true;
                                  return;
                               }
-                              if ((this.itemService.MachineLeft === "BM1" || this.itemService.MachineLeft === "BM2") && (STAQ2 <= 0)) {
-                                 this.showMessageModal2('Geen voorraad saus op machinelocatie!', 'No sauce stock at machine location!', 'Brak wywaru w miejscu maszyny!!');
-                                 this.isValid = true;
-                                 return;
-                              }
+                              // if ((this.itemService.MachineLeft === "BM1" || this.itemService.MachineLeft === "BM2") && (STAQ2 <= 0)) {
+                              //    this.showMessageModal2('Geen voorraad saus op machinelocatie!', 'No sauce stock at machine location!', 'Brak wywaru w miejscu maszyny!!');
+                              //    this.isValid = true;
+                              //    return;
+                              // }
                               const MaxMAQA = STAQ / MTNOQtyLeft
                               const MaxMAQA2 = STAQ2 / MTNOQtyLeft
                               if ((this.itemService.MachineLeft === "BSL" && MaxMAQA < this.MAQA)) {

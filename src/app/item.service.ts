@@ -459,12 +459,12 @@ export class ItemService {
 
       if (this.MachineLeft === "BM1") {
          this.MTNOStockLocationLeft = '200BMENG1';
-         this.MTNOStockLocationLeft2 = '200BM1SAUS';
+         this.MTNOStockLocationLeft2 = '200SPC';
          this.WHLOLeft = '200';
       } else {
          if (this.MachineLeft === "BM2") {
             this.MTNOStockLocationLeft = '200BMENG2';
-            this.MTNOStockLocationLeft2 = '200BM2SAUS';
+            this.MTNOStockLocationLeft2 = '200SPC';
             this.WHLOLeft = '200';
          } else {
             this.MTNOStockLocationLeft = '200INP' + this.MachineLeft;
@@ -475,12 +475,12 @@ export class ItemService {
 
       if (this.MachineRight === "BM1") {
          this.MTNOStockLocationRight = '200BMENG1';
-         this.MTNOStockLocationRight2 = '200BM1SAUS';
+         this.MTNOStockLocationRight2 = '200SPC';
          this.WHLORight = '200';
       } else {
          if (this.MachineRight === "BM2") {
             this.MTNOStockLocationRight = '200BMENG2';
-            this.MTNOStockLocationRight2 = '200BM2SAUS';
+            this.MTNOStockLocationRight2 = '200SPC';
             this.WHLORight = '200';
          } else {
             this.MTNOStockLocationRight = '200INP' + this.MachineRight;
