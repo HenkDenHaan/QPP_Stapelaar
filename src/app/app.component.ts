@@ -49,12 +49,17 @@ export class AppComponent extends CoreBase implements OnInit {
                if (this.user === "KRONENBURG") {
                   this.KB = true
                } else {
-                  if (this.user === "PRD215" || this.user === "PRD216" || this.user === "PRD217" || this.user === "PRD218") {
+                  if (this.user === "PRD218") {
                      this.QS = true;
-                     this.QPP = false;
+                     this.QPP = true;
                   } else {
-                     this.QS = false;
-                     this.QPP = true
+                     if (this.user === "PRD215" || this.user === "PRD216" || this.user === "PRD217" || this.user === "PRD218") {
+                        this.QS = true;
+                        this.QPP = false;
+                     } else {
+                        this.QS = false;
+                        this.QPP = true
+                     }
                   }
                }
                if (this.MNS410UserRole === 'SYS-ALL' || this.user === "MHOL" || this.user === "RLONGAYROU") {
