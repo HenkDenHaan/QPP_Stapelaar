@@ -1,5 +1,5 @@
 {
-   "projectName": "Stapelaar_V06",
+   "projectName": "Stapelaar_V08",
    "proxy": {
       "/m3api-rest": {
          "target": "https://m3PRD.quiks.nl:20108",

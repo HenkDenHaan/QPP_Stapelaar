@@ -300,7 +300,7 @@ export class ComponentLeftComponent {
    }
 
    async SetKarnummer(event: any) {
-      this.Karnummer = this.KarnummerInput
+      this.Karnummer = this.KarnummerInput.toUpperCase()
    }
 
    async ReceiveQuantityLeft(event: any) {
@@ -617,7 +617,7 @@ export class ComponentLeftComponent {
                      this.ExpirationDateLeft = this.WarningExpiDate
                   }
 
-                  if ((!this.itemService.MachineLeft.startsWith("B") && (checkExpiDate < THTMin || checkExpiDate > THTMax)) || (this.itemService.MachineLeft.startsWith("B") && (checkExpiDate < THTMinKB || checkExpiDate > THTMaxKB))) {
+                  if ((!this.itemService.MachineLeft.startsWith("B") && (checkExpiDate < THTMin || checkExpiDate > THTMax)) || (this.itemService.MachineLeft.startsWith("BM") && (checkExpiDate < THTMin || checkExpiDate > THTMax)) || (this.itemService.MachineLeft.startsWith("B") && (checkExpiDate < THTMinKB || checkExpiDate > THTMaxKB))) {
                      this.showMessageModal2('ThT ' + this.WarningExpiDate + ' valt buiten bereik', 'Experation date ' + this.WarningExpiDate + ' is out of range', 'Data ważności ' + this.WarningExpiDate + ' jest poza zakresem');
                   } else {
                      if (this.itemService.MachineLeft === "BCD" || this.itemService.MachineLeft === "BSL") {
