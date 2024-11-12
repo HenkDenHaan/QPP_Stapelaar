@@ -478,7 +478,7 @@ export class ComponentLeftComponent {
                                  if (this.MBWHSL === "200PAST00") {
                                     this.ShowCAMU = true;
                                     await delay(500);
-                                    const input = document.getElementById("input-Karnummer-Right");
+                                    const input = document.getElementById("input-Karnummer-Left");
                                     input.focus();
                                     for (let i = 0; i < 100; i++) {
                                        input.focus();
@@ -714,7 +714,7 @@ export class ComponentLeftComponent {
                                        if (this.MBWHSL === "200PAST00") {
                                           this.ShowCAMU = true;
                                           await delay(1000);
-                                          const input = document.getElementById("input-Karnummer-Right");
+                                          const input = document.getElementById("input-Karnummer-Left");
                                           input.focus();
                                           for (let i = 0; i < 100; i++) {
                                              input.focus();
